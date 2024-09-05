@@ -33,7 +33,7 @@ const EditUser = ({ onUserUpdated }) => {
         onUserUpdated(response.data); // Notify parent to update state
       }
       setLoading(false);
-      navigate('/users'); // Redirect after successful update
+      navigate('/'); // Redirect after successful update
     } catch (error) {
       setError(error.message);
       setLoading(false);

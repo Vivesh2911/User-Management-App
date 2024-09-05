@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateUser = ({ onUserCreated }) => {
   const [name, setName] = useState('');
@@ -8,6 +9,8 @@ const CreateUser = ({ onUserCreated }) => {
   const [address, setAddress] = useState({ street: '', suite: '', city: '', zipcode: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate(); // Use navigate to redirect
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,6 +27,7 @@ const CreateUser = ({ onUserCreated }) => {
         onUserCreated(response.data); // Notify parent to update state
       }
       setLoading(false);
+      navigate('/'); // Redirect to users page after successful creation
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -57,7 +61,7 @@ const CreateUser = ({ onUserCreated }) => {
           <input type="text" value={address.zipcode} onChange={(event) => setAddress({ ...address, zipcode: event.target.value })} />
         </label>
         <br />
-        {/* <button type="submit" className="create-user-button">Create User</button> */}
+        <button type="submit" className="create-user-button">Create User</button>
       </form>
       {loading ? <div>Loading...</div> : null}
       {error ? <div>Error: {error}</div> : null}

@@ -11,7 +11,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/users/:id" element={<User />} />
-        <Route path="/users" element={<Users />} /> 
+        <Route path="/" element={<Users />} /> 
         <Route path="/edit-user/:id" element={<EditUser />} /> 
         <Route path="/createUser" element={<CreateUser/>} /> 
 
